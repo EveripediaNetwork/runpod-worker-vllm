@@ -36,14 +36,13 @@ class Predictor:
             tensor_parallel_size=NUM_GPU_SHARD,
             dtype="auto",
             seed=0,
-            max_num_batched_tokens=8192,
             disable_log_stats=False,
         )
 
         # Create the vLLM asynchronous engine
         self.llm = AsyncLLMEngine.from_engine_args(engine_args)
 
-    def predict(self, settings):
+    async def predict(self, settings):
         ### Set the generation settings
         sampling_params = SamplingParams(
             temperature=settings["temperature"],
@@ -65,13 +64,15 @@ class Predictor:
         ### Generate
         output = None
         time_begin = time.time()
-        output = self.streamGenerate(settings["prompt"])
-        for chunk in output:
+        results_generator = self.llm.generate(
+            settings["prompt"], self.settings, random_uuid()
+        )
+        prev_text = ""
+        async for request_output in results_generator:
+            updated_text = request_output.outputs[0].text
+            chunk = updated_text[len(prev_text) - 1 : -1]
+            prev_text = updated_text
             yield chunk
+
         time_end = time.time()
         print(f"⏱️ Time taken for inference: {time_end - time_begin} seconds")
-
-    def streamGenerate(self, prompt):
-        request_id = random_uuid()
-        output = self.llm.generate(prompt, self.settings, request_id)
-        return output
