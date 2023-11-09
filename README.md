@@ -1,6 +1,6 @@
 # vLLM Worker on Runpod Serverless
 
-This repo consist of worker code that you can deploy to a docker container and use it on Runpod Serverless. This worker uses [vLLM](https://github.com/vllm-project/vllm) under the hood to run inference on a given model. (Check out all supported models [here](https://vllm.readthedocs.io/en/latest/models/supported_models.html))
+This repo consist of worker code that you can deploy to a docker container and use it on Runpod Serverless. It uses [vLLM](https://github.com/vllm-project/vllm) under the hood to run inference on a given model. It supports wide range of LLMs including Llama2, Mistral, Falcon, StarCoder, BLOOM, and many more ! (Check out all supported models [here](https://vllm.readthedocs.io/en/latest/models/supported_models.html))
 
 # 📝 Table of Contents
 - [🌟 How to use](#-how-to-use)
