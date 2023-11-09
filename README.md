@@ -61,7 +61,6 @@ After creating a network volume, you need to create a template for your worker t
 1. Enter your docker image name in the `Container Image` field. This is the same image you pushed to your docker registry in the previous step. (Or you can enter [`lobstrate/runpod-worker-vllm:latest`](https://hub.docker.com/repository/docker/lobstrate/runpod-worker-vllm) image from docker hub)
 1. Select Container disk size. (This doesn't matter much as we are using network volume for model storage)
 1. **[IMPORTANT]** Enter environment variables for your model. `MODEL_NAME` is required. Which is used to download your model from huggingface hub. (refer [Environment Variables](#environment-variables) section for more details)
-1. **[IMPORTANT]** Also enter HF_HOME as `/runpod-volume` in the `Container Environment Variables` field. This is so that your model is downloaded to the network volume you created in the previous step.
 
 ### 3. Create a new Endpoint
 After creating a template, you need to create an endpoint for your worker to use. For this,
