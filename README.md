@@ -71,6 +71,8 @@ After creating a template, you need to create an endpoint for your worker to use
 1. Give a name to your endpoint.
 1. Select template you created in the previous step.
 1. Select GPU type. You can follow this guide to select the right GPU type for your model. [GPU Type Guide](#gpu-type-guide)
+1. Enter active and max worker counts
+1. Check the fast boot option
 1. Select network volume you created in the previous step.
 1. Click on `Create` button.
 
