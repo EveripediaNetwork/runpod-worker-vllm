@@ -1,5 +1,7 @@
 import os
 from huggingface_hub import snapshot_download
+from sys import argv
+
 
 # Get the hugging face token
 HUGGING_FACE_HUB_TOKEN = os.environ.get("HUGGING_FACE_HUB_TOKEN", None)
@@ -26,3 +28,12 @@ def download_model(model_name: str, model_revision: str):
     )
 
     print(f"Finished downloading to: {downloaded_path}")
+
+
+if __name__ == "__main__":
+    model_name = argv[1]
+    model_revision = argv[2]
+    model_directory = f"{MODEL_BASE_PATH}{model_name.split('/')[1]}"
+
+    if not os.path.isdir(model_directory):
+        download_model(model_name, model_revision)
