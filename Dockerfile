@@ -29,7 +29,7 @@ RUN python3 -m pip install --upgrade pip && \
 # Add src files (Worker Template)
 ADD src .
 
-# Download the model if defined
+# Download model if set
 RUN if [ -n $MODEL_NAME ]; then \
     python3 download_model.py $MODEL_NAME $MODEL_REVISION; \
     fi
